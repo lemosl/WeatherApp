@@ -73,21 +73,7 @@ npm run dev
 
 Vite will provide a local URL where you can access the application.
 
-## 🔑 OpenWeather API
 
-This project uses the OpenWeather API to retrieve weather data.
-
-You need to create an API key and configure it in the project.
-
-Create a `.env` file in the root directory:
-
-```env
-VITE_OPENWEATHER_API_KEY=your_api_key
-```
-
-Replace `your_api_key` with your own API key.
-
-Make sure the `.env` file is included in `.gitignore` and is **not uploaded to GitHub**.
 
 ## 📚 What I Learned
 
