@@ -1,4 +1,7 @@
 import './style.css'
+import React from 'react'
+
+
 function WeatherResults({ weather }) {
     return (
         <div className='weather-container'>
@@ -14,7 +17,7 @@ function WeatherResults({ weather }) {
                     })}
                 </p>
 
-                <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt="" />
+                <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt={weather.weather[0].description} />
                 <p className='temperature'>{Math.round(weather.main.temp)}°C</p>
             </div>
             <p className='description'>{weather.weather[0].description}</p>

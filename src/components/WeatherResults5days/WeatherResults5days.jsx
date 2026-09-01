@@ -1,4 +1,6 @@
 import './style.css'
+import React from "react";
+
 
 
 function WeatherResults5days({ weather5days }) {
@@ -14,7 +16,7 @@ function WeatherResults5days({ weather5days }) {
 
     }
 
-    const FiveDays = Object.values(dailyForecast).slice(0.6)
+    const FiveDays = Object.values(dailyForecast).slice(1,6)
     console.log(FiveDays)
 
     console.log(dailyForecast)

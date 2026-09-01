@@ -20,7 +20,7 @@ function App() {
               error:weatherError,
                }= useWeather(city)
 
-      const {data: weather5days, 
+      const { data: weather5days, 
               isloading: isforecastLoading,
               isFetching: isforecastFetching,
               isError: isforecastError,
