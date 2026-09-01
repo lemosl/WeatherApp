@@ -1,6 +1,5 @@
 import './style.css'
 function WeatherResults({ weather }) {
-    console.log(weather.dt)
     return (
         <div className='weather-container'>
             <h2>{weather.name}</h2>

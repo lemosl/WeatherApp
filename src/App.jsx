@@ -1,43 +1,74 @@
 import { useRef, useState } from 'react'
 import './App.css'
-import { use } from 'react'
 import axios from 'axios'
 import WeatherResults from './components/WeatherResults/WeatherResults'
 import WeatherResults5days from './components/WeatherResults5days/WeatherResults5days'
+import { useQuery } from "@tanstack/react-query";
+
+import { useWeather } from './hooks/weather';
+import { useForecast } from './hooks/forecast';
 
 
 function App() {
-       const inputref = useRef()
-       const [weather, setWeather] = useState()
-        const [weather5days, setWeather5days] = useState()
-      
-    async  function SearchCity(){
+       const inputref = useRef()  
+       const [city, setCity] = useState("");
+    
+       const {data: weather, 
+              isloading: isWeatherLoading,
+              isFetching: isWeatherFetching,
+              isError: isWeatherError,
+              error:weatherError,
+               }= useWeather(city)
 
-        const city  = inputref.current.value; 
-        
-        const key = "b3f8f69e9e60b437b2b03fa2a0db5f4d"
-        
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&lang=pt&units=metric`
-
-        const url5days = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&lang=pt&units=metric`;
-         
-        const APidata = await axios.get(url)
-        const ApiUrl5days  = await axios.get(url5days)
+      const {data: weather5days, 
+              isloading: isforecastLoading,
+              isFetching: isforecastFetching,
+              isError: isforecastError,
+              error: forecastError,
+               } = useForecast(city)
        
-        setWeather(APidata.data)
-        setWeather5days(ApiUrl5days.data)
+      
+    const SearchCity = () => {
+
+        const city  = inputref.current.value.trim();  
+        if(city) {
+          setCity(city);
+        }
         
-        
+      
+       
     }
 
 
   return (
     <div className='container'> 
-        <h1 >Previsão de tempo</h1>
+        <h1>Previsão de tempo</h1>
         <input ref={inputref} type="text" placeholder='Digite o nome da cidade ou do pais'/>
-        <button onClick={SearchCity}>Pesquisar</button>
-         {weather && < WeatherResults weather={weather} />}
-         {weather && < WeatherResults5days weather5days={weather5days} />}
+        <button onClick={SearchCity}>Pesquisar</button> 
+
+        {isWeatherLoading && (
+          <p>A procurar informação meteorológia...</p>
+        )}
+
+        {isWeatherFetching && !isWeatherLoading && (
+          <p>A atualizar informação...</p>
+        )}
+
+        {isWeatherError && (
+                <p>
+                    Não foi possível encontrar a cidade.
+                    {weatherError?.response?.data?.message}
+                </p>
+        )}
+        {isforecastError && (
+                <p>
+                    Não foi possível carregar a previsão.
+                </p>
+        )}
+
+
+        {weather && < WeatherResults weather={weather} />}
+        {weather5days && !isforecastLoading && ( < WeatherResults5days weather5days={weather5days} />)}
     </div>
   )
 }
