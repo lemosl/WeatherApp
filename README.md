@@ -30,6 +30,10 @@ The application allows users to search for a city and view the current weather c
 * **CSS**
 * **OpenWeather API**
 
+## Testing
+
+Unit and component tests implemented with Vitest and React Testing Library. Tests are automatically executed through GitHub Actions on every push and pull request.
+
 ## 📂 Project Structure
 
 ```text
