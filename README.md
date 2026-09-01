@@ -19,6 +19,10 @@ The application allows users to search for a city and view the current weather c
 * Query caching
 * Automatic retry for failed requests
 * Prevent API requests when no city is provided
+* Component testing
+* Responsive UI development
+* Git and GitHub
+* CI with GitHub Actions
 
 ## 🛠️ Technologies
 
@@ -29,6 +33,9 @@ The application allows users to search for a city and view the current weather c
 * **TanStack Query**
 * **CSS**
 * **OpenWeather API**
+* **Vitest**
+* **React Testing Library**
+* **Git actions**
 
 ## Testing
 
